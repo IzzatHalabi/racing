@@ -23,8 +23,7 @@ public class GameLogicServer extends UnicastRemoteObject implements GameLogicSer
 
         GameLogicClientIF found = null;
         for (GameLogicClientIF client : clients) {
-            if (client.getId() != clientId) continue;
-            found = client;
+            if (client.getId() == clientId) found = client;
         }
 
         User user = database.findUserByName(name);
@@ -35,7 +34,7 @@ public class GameLogicServer extends UnicastRemoteObject implements GameLogicSer
     }
 
     @Override
-    public void registerChatClient(GameLogicClientIF client) {
+    public void registerClient(GameLogicClientIF client) {
         this.clients.add(client);
     }
 

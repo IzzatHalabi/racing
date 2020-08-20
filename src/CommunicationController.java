@@ -10,6 +10,6 @@ public class CommunicationController {
         GameLogicServer server = new GameLogicServer();
         Naming.rebind("MultiplayerRacingServer", server);
 
-        System.out.println("[SYSTEM] Server is running...");
+        System.out.println("[System] Server is running...");
     }
 }
