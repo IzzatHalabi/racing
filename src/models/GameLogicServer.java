@@ -39,41 +39,11 @@ public class GameLogicServer extends UnicastRemoteObject implements GameLogicSer
     }
 
     @Override
-    public int participantSize() {
-        return clients.size();
-    }
+    public int userMove(int id) {
+        User user = database.updateUserCoordinate(id, 1);
+        System.out.println(user.name + " has moved to coordinate " + user.coordinate);
 
-    @Override
-    public ArrayList<String> participantNames() throws RemoteException {
-
-        ArrayList<String> names = new ArrayList<>();
-        User user;
-
-        for (GameLogicClientIF client : clients) {
-            user = database.findUser(client.getUserId());
-            names.add(user.name);
-        }
-
-        return names;
-    }
-
-    @Override
-    public ArrayList<Integer> participantCoordinate() throws RemoteException {
-
-        ArrayList<Integer> coordinate = new ArrayList<>();
-        User user;
-
-        for (GameLogicClientIF client : clients) {
-            user = database.findUser(client.getUserId());
-            coordinate.add(user.coordinate);
-        }
-
-        return coordinate;
-    }
-
-    @Override
-    public int updateUser(int id, int distance) {
-        return database.updateUserCoordinate(id, distance);
+        return user.coordinate;
     }
 
     @Override

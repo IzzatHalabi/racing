@@ -23,20 +23,16 @@ public class FakeDatabase {
         return false;
     }
 
-    public User findUser(int id) {
-        return users.get(id);
-    }
-
     public User findUserByName(String name) {
         for (User user : users) if (user.name.equals(name)) return user;
         return users.get(0);
     }
 
-    public int updateUserCoordinate(int id, int distance) {
-        User user = findUser(id);
+    public User updateUserCoordinate(int id, int distance) {
+        User user = users.get(id);
         user.coordinate += distance;
         users.set(user.id, user);
 
-        return user.coordinate;
+        return user;
     }
 }
